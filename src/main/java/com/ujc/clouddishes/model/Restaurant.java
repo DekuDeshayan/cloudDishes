@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,6 +26,7 @@ public class Restaurant {
 	@Column(nullable = false, length = 100)
 	private String name;
 	
+	@Enumerated(EnumType.STRING)
 	@Column(nullable = false, length =100)
 	private Province province;
 	
@@ -33,8 +36,6 @@ public class Restaurant {
 	@Column(nullable = false, length =100)
 	private String neighborhood;
 	
-	@Column(nullable = false, length =100)
-	private String street;
 	
 	@Column(nullable = false, length =100)
 	private String avenue;

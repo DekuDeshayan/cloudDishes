@@ -4,9 +4,13 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.ujc.clouddishes.model.enums.Role;
@@ -31,8 +35,23 @@ public class User {
 	@Column(nullable = false)
 	private LocalDateTime createTime;
 	
+	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private Role role;
+	
+	@OneToOne
+	@MapsId
+	private Client client;//cliente vai mapear(receber) o id do usuario
+	
+	@OneToOne
+	@MapsId
+	private Admin admin;//admin vai mapear(receber) o id do usuario
+	
+	@OneToOne
+	@MapsId
+	private Manager manager;//o manager vai mapear(receber) o id do usuario
+	
+	private Receptionist receptionist;//
 	
 	
 }

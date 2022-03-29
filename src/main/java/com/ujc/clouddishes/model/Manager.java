@@ -2,11 +2,15 @@ package com.ujc.clouddishes.model;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 import com.ujc.clouddishes.model.enums.Gender;
 
@@ -29,10 +33,14 @@ public class Manager {
 	@Column(nullable = false, length = 9)	
 	private String phone;
 	
+	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private Gender gender;
 	
 	@Column(nullable = false)
 	private LocalDateTime createTime;
+	
+	@OneToOne(mappedBy = "manager", cascade = CascadeType.ALL)
+	private User user;// o user vai ser mapeado pelo manager
 	
 }
