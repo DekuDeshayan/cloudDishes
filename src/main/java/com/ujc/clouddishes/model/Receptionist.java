@@ -2,7 +2,6 @@ package com.ujc.clouddishes.model;
 
 import java.time.LocalDate;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -10,7 +9,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import com.ujc.clouddishes.model.enums.Gender;
 
@@ -18,6 +19,7 @@ import lombok.Data;
 
 @Data
 @Entity
+@Table(name="receptionist")
 public class Receptionist {
 	
 	@Id
@@ -39,7 +41,11 @@ public class Receptionist {
 	
 	@Column(nullable = false)
 	private LocalDate createTime;
+	
+	@OneToOne
+	@MapsId
+	private User user;
+	
+	
 
-	@OneToOne(mappedBy = "recepcionist", cascade = CascadeType.ALL)
-	private User user;//o user sera mapeado pelo recepcionista
 }
