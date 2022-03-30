@@ -2,6 +2,7 @@ package com.ujc.clouddishes.model;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,15 +10,19 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.ujc.clouddishes.model.enums.District;
+import com.ujc.clouddishes.model.enums.Neighborhood;
 import com.ujc.clouddishes.model.enums.Province;
 
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name="reservation")
+@Table(name="restaurant")
 public class Restaurant {
 	
 	@Id
@@ -32,16 +37,14 @@ public class Restaurant {
 	@Column(nullable = false, length =100)
 	private Province province;
 	
+	@Enumerated(EnumType.STRING)
 	@Column(nullable = false, length =100)
-	private String district;
+	private District district;
 	
+	@Enumerated(EnumType.STRING)
 	@Column(nullable = false, length =100)
-	private String neighborhood;
+	private Neighborhood neighborhood;
 	
-	
-	@Column(nullable = false, length =100)
-	private String avenue;
-
 	@Column(nullable = false, length =100)
 	private String imageTitle;
 	
@@ -53,6 +56,14 @@ public class Restaurant {
 	
 	@Column(nullable = false)
 	private LocalDateTime creatTime;
+	
+	
+	
+	@OneToMany(mappedBy = "restaurant")
+	private Order order;
+	
+	@OneToOne(mappedBy = "restaurant", cascade = CascadeType.ALL)
+	private Manager manager;
 	
 	
 

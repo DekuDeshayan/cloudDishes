@@ -17,6 +17,7 @@ public enum District {
 	MAPUTO_CITY,
 	MATOLA,
 	BOANE,
+	KATEMBE,
 	MANHICA,
 	MARRACUENE,
 	NAMAACHA,

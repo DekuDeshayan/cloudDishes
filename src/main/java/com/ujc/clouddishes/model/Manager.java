@@ -46,4 +46,8 @@ public class Manager {
 	@MapsId
 	private User user;
 	
+	@OneToOne
+	@MapsId
+	private Restaurant restaurant;
+	
 }
