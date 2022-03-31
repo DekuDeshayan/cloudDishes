@@ -1,12 +1,12 @@
 package com.ujc.clouddishes.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.ujc.clouddishes.repository.AdminRepository;
 
-import lombok.Data;
 
-@Data
+@Service
 public class AdminServiceImplementation implements AdminService {
 
 	@Autowired
