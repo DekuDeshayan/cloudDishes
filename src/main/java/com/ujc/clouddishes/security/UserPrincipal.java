@@ -18,7 +18,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @Getter
 public class UserPrincipal implements UserDetails {
-	
+
+	private static final long serialVersionUID = 1L;
 	private  Long id;
 	private  String username;
 	transient private String password;// don't show up on serialized places
