@@ -36,6 +36,7 @@ public class JwtProviderImplementation implements JwtProvider {
 	private Long JWT_EXPIRATION_IN_MS;
 	
 	
+	@Override
 	public String generateToken (UserPrincipal auth) {
 		  
 		String authorities = auth.getAuthorities().stream()

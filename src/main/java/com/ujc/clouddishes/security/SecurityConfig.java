@@ -3,6 +3,7 @@ package com.ujc.clouddishes.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -16,6 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.ujc.clouddishes.model.enums.Role;
 import com.ujc.clouddishes.security.jwt.JwtAuthorizationFilter;
 
 @Configuration
@@ -38,15 +40,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.cors();
 		http.csrf().disable();
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-		http.authorizeRequests().
-				antMatchers("/api/authentication/**").permitAll()
-				.anyRequest().authenticated();
+		http.authorizeRequests()
+			.antMatchers("/api/authentication/**").permitAll()//first allowed endpoints for all user roles
+			.antMatchers(HttpMethod.POST, "/api/client/sign-up").permitAll()//first allowed endpoints for all user roles
+			.antMatchers(HttpMethod.POST, "/api/manager/save").hasRole(Role.ADMIN.name())//then this restricted endpoints will be accessible only if the user has a role called admin
+			.antMatchers(HttpMethod.POST, "/api/receptionist/save").hasRole(Role.ADMIN.name())//then this restricted endpoints will be accessible only if the user has a role called admin
+			.antMatchers(HttpMethod.POST, "/api/receptionist/save").hasRole(Role.MANAGER.name())//then this restricted endpoints will be accessible only if the user has a role called admin
+			.anyRequest().authenticated();
 		
 		 http.addFilterBefore(jwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
 	
 	
-	//why dont we use it as a component, beacause of scope
+	//why dont we use it as a component, because of scope
 	@Bean
 	 public JwtAuthorizationFilter jwtAuthorizationFilter () {
 		 

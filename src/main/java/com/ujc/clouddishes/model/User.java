@@ -1,17 +1,19 @@
 package com.ujc.clouddishes.model;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.ujc.clouddishes.model.enums.Gender;
 import com.ujc.clouddishes.model.enums.Role;
@@ -44,21 +46,16 @@ public class User {
 	@Column(nullable = false)
 	private Role role;
 	
-	//mapeamentos da chave estrangeira User_ID nas entidades abaixo instanciadas
+	@OneToMany(mappedBy = "user", fetch =  FetchType.LAZY)
+	private Set<Order> order;
+	
+	@OneToMany(mappedBy = "user", fetch =  FetchType.LAZY)
+	private Set<Reservation> reservation;
+	
+	@Transient
+	private String token;
+	
 
-	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-	private Client client;
-	
-	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-	private Admin admin;
-	
-	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-	private Manager manager;
-	
-	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-	private Receptionist receptionist;
-	
-	
 	
 	
 }

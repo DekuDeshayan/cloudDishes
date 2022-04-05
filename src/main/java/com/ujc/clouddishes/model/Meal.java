@@ -1,6 +1,7 @@
 package com.ujc.clouddishes.model;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.ujc.clouddishes.model.enums.Mealtype;
@@ -48,8 +50,12 @@ public class Meal {
 	@Column(nullable = false)
 	private LocalDateTime creatTime;
 	
-	private Set<Order> order;
+	@ManyToMany(mappedBy = "meal")
+	private Set<Order> order = new HashSet<>();
 	
-	private Set<Reservation> meal;
+	@ManyToMany(mappedBy = "meal")
+	private Set<Reservation> reservation = new HashSet<>();
+	
+	
 
 }

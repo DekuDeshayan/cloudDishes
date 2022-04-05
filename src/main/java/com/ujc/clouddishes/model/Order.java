@@ -1,10 +1,12 @@
 package com.ujc.clouddishes.model;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,7 +22,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="order")
+@Table(name="orders")
 public class Order {
 	
 	@Id
@@ -35,19 +37,20 @@ public class Order {
 	
 	@ManyToMany
 	@JoinTable(name = "order_meal", joinColumns = @JoinColumn(name = "meal_id"), inverseJoinColumns = @JoinColumn(name = "order_id"))
-	private Set<Meal> meal;
+	private Set<Meal> meal = new HashSet<>();
 	
 	@MapsId
 	@OneToOne
 	private Request request;
 	
-	@ManyToOne
+	@ManyToOne(fetch =  FetchType.LAZY)
 	@JoinColumn(name="restaurant_id", referencedColumnName = "id")
 	private Restaurant restaurant;
 	
 	
-	@ManyToOne
-	@JoinColumn(name ="client_id", referencedColumnName = "id")
-	private Client client;
+	@ManyToOne(fetch =  FetchType.LAZY)
+	@JoinColumn(name="user_id", referencedColumnName = "id")
+	private User user;
+
 	
 }

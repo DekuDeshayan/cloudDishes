@@ -1,10 +1,12 @@
 package com.ujc.clouddishes.model;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,17 +37,24 @@ public class Reservation {
 	
 	@ManyToMany
 	@JoinTable(name = "reservation_meal", joinColumns = @JoinColumn(name = "meal_id"), inverseJoinColumns = @JoinColumn(name = "reservation_id"))
-	private Set<Meal> meal;
+	private Set<Meal> meal = new HashSet<>();
 	
 	@OneToOne
 	@MapsId
 	private Request request;
 	
 	
-	@ManyToOne
-	@JoinColumn(name = "client_id", referencedColumnName = "id")
-	private Client client;
-
+	@ManyToOne(fetch =  FetchType.LAZY)
+	@JoinColumn(name="user_id", referencedColumnName = "id")
+	private User user;
+	
+	
+	@ManyToOne(fetch =  FetchType.LAZY)
+	@JoinColumn(name="restaurant_id", referencedColumnName = "id")
+	private Restaurant restaurant;
+	
+	
+	
 
 	
 }

@@ -6,12 +6,20 @@ import com.ujc.clouddishes.model.User;
 import com.ujc.clouddishes.model.enums.Role;
 
 public interface UserService {
+
+	
+	User saveClient(User user);
+	
+	User saveManager(User user);
+	
+	User saveReceptionist (User user);
+	
+	User saveAdmin(User user);
+	
+	Optional<User> findByUsername(String username);
 	
 	void changeUserRole(String username, Role role);
 	
-	User saveUser(User user);
-
-	Optional<User> findByUsername(String username);
 
 
 }

@@ -25,16 +25,46 @@ public class UserServiceImplementation implements UserService {
 	
 	
 	@Override
-	public User saveUser(User user) {
+	public User saveClient(User user) {
 		
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		user.setRole(Role.USER);
+		user.setRole(Role.CLIENT);
 		user.setCreateTime(LocalDateTime.now());
 		
 		return userRepository.save(user);
 		
 	}
 
+
+
+	@Override
+	public User saveManager(User user) {
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		user.setRole(Role.MANAGER);
+		user.setCreateTime(LocalDateTime.now());
+		
+		return userRepository.save(user);
+	}
+
+	@Override
+	public User saveReceptionist(User user) {
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		user.setRole(Role.RECEPTIONIST);
+		user.setCreateTime(LocalDateTime.now());
+		
+		return userRepository.save(user);
+	}
+
+	@Override
+	public User saveAdmin(User user) {
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		user.setRole(Role.ADMIN);
+		user.setCreateTime(LocalDateTime.now());
+		
+		return userRepository.save(user);
+	}
+
+	
 	@Override
 	public Optional<User> findByUsername(String username) {
 		
@@ -44,14 +74,14 @@ public class UserServiceImplementation implements UserService {
 	
 	
 	@Override
-	@Transactional // Anotacao para consultas que modificam a base de dados: update, deletes
+	@Transactional//Anotacao para consultas que modificam a base de dados: update, deletes
 	public void changeUserRole(String username, Role role) {
 		
 		userRepository.updateUserRole(username, role);
 		
 	}
 
-	
+
 	
 	
 

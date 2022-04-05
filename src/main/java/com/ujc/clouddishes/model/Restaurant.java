@@ -1,17 +1,17 @@
 package com.ujc.clouddishes.model;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.ujc.clouddishes.model.enums.District;
@@ -57,14 +57,11 @@ public class Restaurant {
 	@Column(nullable = false)
 	private LocalDateTime creatTime;
 	
+	@OneToMany(mappedBy = "restaurant", fetch =  FetchType.LAZY)
+	private Set<Order> order;
 	
-	
-	@OneToMany(mappedBy = "restaurant")
-	private Order order;
-	
-	@OneToOne(mappedBy = "restaurant", cascade = CascadeType.ALL)
-	private Manager manager;
-	
-	
+	@OneToMany(mappedBy = "restaurant", fetch = FetchType.LAZY)
+	private Set<Reservation> reservation;
+
 
 }
