@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,7 +15,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -27,8 +27,9 @@ public class Order {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private long id;
 	
+
 	@Column(nullable = false)
 	private LocalDateTime ordertime;
 	
@@ -39,8 +40,9 @@ public class Order {
 	@JoinTable(name = "order_meal", joinColumns = @JoinColumn(name = "meal_id"), inverseJoinColumns = @JoinColumn(name = "order_id"))
 	private Set<Meal> meal = new HashSet<>();
 	
-	@MapsId
-	@OneToOne
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "request_id", referencedColumnName = "id")
 	private Request request;
 	
 	@ManyToOne(fetch =  FetchType.LAZY)

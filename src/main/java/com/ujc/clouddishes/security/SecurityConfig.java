@@ -43,9 +43,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 			.antMatchers("/api/authentication/**").permitAll()//first allowed endpoints for all user roles
 			.antMatchers(HttpMethod.POST, "/api/client/sign-up").permitAll()//first allowed endpoints for all user roles
-			.antMatchers(HttpMethod.POST, "/api/manager/save").hasRole(Role.ADMIN.name())//then this restricted endpoints will be accessible only if the user has a role called admin
-			.antMatchers(HttpMethod.POST, "/api/receptionist/save").hasRole(Role.ADMIN.name())//then this restricted endpoints will be accessible only if the user has a role called admin
-			.antMatchers(HttpMethod.POST, "/api/receptionist/save").hasRole(Role.MANAGER.name())//then this restricted endpoints will be accessible only if the user has a role called admin
+			.antMatchers(HttpMethod.POST, "/api/manager/save").permitAll()//then this restricted endpoints will be accessible only if the user has a role called admin
+			.antMatchers(HttpMethod.POST, "/api/restaurant/save").permitAll()//then this restricted endpoints will be accessible only if the user has a role called admin
+			.antMatchers(HttpMethod.POST, "/api/receptionist/save").permitAll()//then this restricted endpoints will be accessible only if the user has a role called admin
+			.antMatchers(HttpMethod.POST, "/api/receptionist/save").permitAll()//then this restricted endpoints will be accessible only if the user has a role called admin
 			.anyRequest().authenticated();
 		
 		 http.addFilterBefore(jwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);

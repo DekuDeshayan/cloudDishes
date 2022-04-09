@@ -1,6 +1,5 @@
 package com.ujc.clouddishes.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -32,10 +31,10 @@ public class Request {
 	@Column(nullable = false)
 	private String description;
 	
-	@OneToOne(mappedBy = "request", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "request")
 	private Reservation reservation;
 	
-	@OneToOne(mappedBy = "request", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "request")
 	private Order order;
 	
 	
