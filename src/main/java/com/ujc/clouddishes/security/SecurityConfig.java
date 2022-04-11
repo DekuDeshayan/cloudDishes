@@ -3,7 +3,6 @@ package com.ujc.clouddishes.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -41,13 +40,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable();
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		http.authorizeRequests()
-			.antMatchers("/api/authentication/**").permitAll()//first allowed endpoints for all user roles
-			.antMatchers(HttpMethod.POST, "/api/client/sign-up").permitAll()//first allowed endpoints for all user roles
-			.antMatchers(HttpMethod.POST, "/api/manager/save").permitAll()//then this restricted endpoints will be accessible only if the user has a role called admin
-			.antMatchers(HttpMethod.POST, "/api/restaurant/save").permitAll()//then this restricted endpoints will be accessible only if the user has a role called admin
-			.antMatchers(HttpMethod.POST, "/api/receptionist/save").permitAll()//then this restricted endpoints will be accessible only if the user has a role called admin
-			.antMatchers(HttpMethod.POST, "/api/receptionist/save").permitAll()//then this restricted endpoints will be accessible only if the user has a role called admin
-			.anyRequest().authenticated();
+		  .antMatchers("/api/authentication/**").permitAll()//first allowed endpoints for all user roles
+		  .antMatchers("/api/restaurant/**").permitAll()//first allowed endpoints for all user roles
+	      .antMatchers("/api/client/sign-up").permitAll()//first allowed endpoints for all user roles
+	      .antMatchers("/api/manager/save").hasRole(Role.ADMIN.name()) //then this restricted endpoints will be accessible only if the user has a role called admin
+	      .antMatchers("/api/restaurant/save").hasRole(Role.ADMIN.name()) //then this restricted endpoints will be accessible only if the user has a role called admin
+	      .antMatchers("/api/receptionist/save").hasRole(Role.MANAGER.name()) //then this restricted endpoints will be accessible only if the user has a role called manager
+	      .antMatchers("/api/meal/save").hasRole(Role.MANAGER.name()) //then this restricted endpoints will be accessible only if the user has a role called manager
+	      .anyRequest().authenticated();
 		
 		 http.addFilterBefore(jwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
 	}

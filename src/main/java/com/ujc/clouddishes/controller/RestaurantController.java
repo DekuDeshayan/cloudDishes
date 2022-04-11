@@ -3,6 +3,8 @@ package com.ujc.clouddishes.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +24,13 @@ public class RestaurantController {
 	public ResponseEntity<?> saveRestaurant(@RequestBody Restaurant restaurant){
 		
 		return new ResponseEntity<>(restaurantService.saveRestaurant(restaurant), HttpStatus.CREATED);
+	}
+	
+	
+	@GetMapping("retrieve-rest-by-geo/{provinceCode}")//api/restaurant/retrieve-rest-by-geo/{province}
+	public ResponseEntity<?> retrieveRestaurantListByGeolocalization(@PathVariable Integer provinceCode){
+		return ResponseEntity.ok(restaurantService.retrieveRestaurantListByGeolocalization(provinceCode));
+		//return new ResponseEntity<>(restaurantService.retrieveRestaurantListByGeolocalization(province), HttpStatus.OK);
 	}
 
 }
