@@ -44,11 +44,19 @@ public class Order {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "request_id", referencedColumnName = "id")
 	private Request request;
+
+	//fk- é a criacao da foreign key como no mysql: device_id int
+	@Column(name="restaurant_id", nullable = false, insertable = false, updatable = false )
+	private Long restaurantId;
+	
 	
 	@ManyToOne(fetch =  FetchType.LAZY)
 	@JoinColumn(name="restaurant_id", referencedColumnName = "id")
 	private Restaurant restaurant;
 	
+	//fk- é a criacao da foreign key como no mysql: device_id int
+		@Column(name="user_id", nullable = false, insertable = false, updatable = false )
+		private Long userId;
 	
 	@ManyToOne(fetch =  FetchType.LAZY)
 	@JoinColumn(name="user_id", referencedColumnName = "id")

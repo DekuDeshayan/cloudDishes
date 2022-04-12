@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.ujc.clouddishes.model.enums.District;
+import com.ujc.clouddishes.model.enums.Neighborhood;
 import com.ujc.clouddishes.model.enums.Province;
 
 import lombok.Data;
@@ -76,15 +77,27 @@ public class Restaurant {
 		}
 
 	}
+	
+	public Neighborhood getNeighborhood() {
+		return Neighborhood.valueOf(this.neighborhood);
+	}
 
-	public Restaurant(long id, String name, Province province, District district, Integer neighborhood,
+	public void setNeighborhood(Neighborhood neighborhood) {
+
+		if (neighborhood != null) {
+			this.neighborhood = neighborhood.getCode();
+		}
+
+	}
+
+	public Restaurant(long id, String name, Province province, District district, Neighborhood neighborhood,
 			String imageTitle, Integer openTime, Integer closeTime, LocalDateTime creatTime) {
 		super();
 		this.id = id;
 		this.name = name;
 		setProvince(province);
 		setDistrict(district);
-		this.neighborhood = neighborhood;
+		setNeighborhood(neighborhood);
 		this.imageTitle = imageTitle;
 		this.openTime = openTime;
 		this.closeTime = closeTime;

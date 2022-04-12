@@ -10,6 +10,6 @@ public interface RestaurantService {
 	
 	Restaurant saveRestaurant(Restaurant restaurant);
 	
-	List<RestaurantListByGeoLocalization> retrieveRestaurantListByGeolocalization(Integer provinceCode);
+	List<RestaurantListByGeoLocalization> retrieveRestaurantListByGeolocalization(Integer provinceCode, Integer districtCode, Integer neighborhoodCode);
 
 }

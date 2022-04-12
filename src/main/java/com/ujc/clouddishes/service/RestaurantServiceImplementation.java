@@ -27,9 +27,9 @@ public class RestaurantServiceImplementation implements RestaurantService {
 	}
 
 	@Override
-	public List<RestaurantListByGeoLocalization> retrieveRestaurantListByGeolocalization(Integer provinceCode) {
+	public List<RestaurantListByGeoLocalization> retrieveRestaurantListByGeolocalization(Integer provinceCode, Integer districtCode, Integer neighborhoodCode) {
 		
-		return restaurantRepository.retrieveRestaurantListByGeolocalization(provinceCode);
+		return restaurantRepository.retrieveRestaurantListByGeolocalization(provinceCode, districtCode, neighborhoodCode);
 	}
 	
 	

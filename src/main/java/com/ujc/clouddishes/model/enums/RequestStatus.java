@@ -4,5 +4,5 @@ public enum RequestStatus {
 	
 	PENDING,
 	PROVISIONING,
-	READY
+	READY;
 }

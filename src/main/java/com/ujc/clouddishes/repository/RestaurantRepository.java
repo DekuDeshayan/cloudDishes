@@ -13,8 +13,8 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long>{
 	
 	
 	
-	@Query("SELECT r FROM Restaurant r WHERE r.province = :provinceCode")
-	List<RestaurantListByGeoLocalization> retrieveRestaurantListByGeolocalization(@Param("provinceCode") Integer provinceCode);
+	@Query("SELECT r FROM Restaurant r WHERE r.province = :provinceCode and r.district =:districtCode and r.neighborhood =:neighborhoodCode")
+	List<RestaurantListByGeoLocalization> retrieveRestaurantListByGeolocalization(@Param("provinceCode") Integer provinceCode, @Param("districtCode") Integer districtCode, @Param("neighborhoodCode") Integer neighborhoodCode);
 	
 	/*
 	@Query("SELECT name, province, district, neighborhood, imageTitle, openTime, closeTime " +

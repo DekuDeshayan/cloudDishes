@@ -27,9 +27,9 @@ public class RestaurantController {
 	}
 	
 	
-	@GetMapping("retrieve-rest-by-geo/{provinceCode}")//api/restaurant/retrieve-rest-by-geo/{province}
-	public ResponseEntity<?> retrieveRestaurantListByGeolocalization(@PathVariable Integer provinceCode){
-		return ResponseEntity.ok(restaurantService.retrieveRestaurantListByGeolocalization(provinceCode));
+	@GetMapping("retrieve-rest-by-geo/{provinceCode}/{districtCode}/{neighborhoodCode}")//api/restaurant/retrieve-rest-by-geo/{province}
+	public ResponseEntity<?> retrieveRestaurantListByGeolocalization(@PathVariable Integer provinceCode, @PathVariable Integer districtCode,@PathVariable Integer neighborhoodCode){
+		return ResponseEntity.ok(restaurantService.retrieveRestaurantListByGeolocalization(provinceCode,districtCode,neighborhoodCode));
 		//return new ResponseEntity<>(restaurantService.retrieveRestaurantListByGeolocalization(province), HttpStatus.OK);
 	}
 
