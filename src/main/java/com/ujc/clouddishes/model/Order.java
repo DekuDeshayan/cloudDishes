@@ -18,11 +18,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name="orders")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Order {
 	
 	@Id
@@ -31,35 +34,35 @@ public class Order {
 	
 
 	@Column(nullable = false)
-	private LocalDateTime ordertime;
+	private LocalDateTime orderTime;
 	
 	@Column(nullable = false)
 	private String description;
+	
+
 	
 	@ManyToMany
 	@JoinTable(name = "order_meal", joinColumns = @JoinColumn(name = "meal_id"), inverseJoinColumns = @JoinColumn(name = "order_id"))
 	private Set<Meal> meal = new HashSet<>();
 	
 
+	//fk- é a criacao da foreign key como no mysql: user_id int
+	@Column(nullable = false)
+	private Long request_id;
+	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "request_id", referencedColumnName = "id")
+	@JoinColumn(name = "request_id", referencedColumnName = "id", insertable = false, updatable = false)
 	private Request request;
+	
 
-	//fk- é a criacao da foreign key como no mysql: device_id int
-	@Column(name="restaurant_id", nullable = false, insertable = false, updatable = false )
-	private Long restaurantId;
+	
+	//fk- é a criacao da foreign key como no mysql: user_id int
+	@Column(name="user_id", nullable = false)
+	private Long user_id;
 	
 	
 	@ManyToOne(fetch =  FetchType.LAZY)
-	@JoinColumn(name="restaurant_id", referencedColumnName = "id")
-	private Restaurant restaurant;
-	
-	//fk- é a criacao da foreign key como no mysql: device_id int
-		@Column(name="user_id", nullable = false, insertable = false, updatable = false )
-		private Long userId;
-	
-	@ManyToOne(fetch =  FetchType.LAZY)
-	@JoinColumn(name="user_id", referencedColumnName = "id")
+	@JoinColumn(name="user_id", referencedColumnName = "id", insertable = false, updatable = false)
 	private User user;
 
 	

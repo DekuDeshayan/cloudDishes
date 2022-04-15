@@ -1,20 +1,18 @@
 package com.ujc.clouddishes.model;
 
 import java.time.LocalDateTime;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.ujc.clouddishes.model.enums.Gender;
 import com.ujc.clouddishes.model.enums.Role;
 
@@ -23,6 +21,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name="users")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {
 
 	@Id
@@ -56,16 +55,17 @@ public class User {
 	@Column(nullable = false)
 	private Role role;
 	
-	@OneToMany(mappedBy = "user", fetch =  FetchType.LAZY)
-	private Set<Order> order;
-	
-	@OneToMany(mappedBy = "user", fetch =  FetchType.LAZY)
-	private Set<Reservation> reservation;
+	/*
+		@OneToMany(mappedBy = "user", fetch =  FetchType.LAZY)
+		private Set<Order> order;
+		
+		@OneToMany(mappedBy = "user", fetch =  FetchType.LAZY)
+		private Set<Reservation> reservation;
+	*/
 	
 	@Transient
 	private String token;
 	
-
 	
 	
 }

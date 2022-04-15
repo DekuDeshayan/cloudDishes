@@ -19,6 +19,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	void updateUserRole(@Param("username") String username, @Param("role") Role role);
 	
 	
+	
+	
 
 
 }

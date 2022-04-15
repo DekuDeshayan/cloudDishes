@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ujc.clouddishes.model.Restaurant;
-import com.ujc.clouddishes.model.enums.Province;
 import com.ujc.clouddishes.repository.RestaurantRepository;
 import com.ujc.clouddishes.repository.projections.RestaurantListByGeoLocalization;
 
@@ -21,7 +20,7 @@ public class RestaurantServiceImplementation implements RestaurantService {
 	@Override
 	public Restaurant saveRestaurant(Restaurant restaurant) {
 		
-		restaurant.setCreatTime(LocalDateTime.now());
+		restaurant.setCreateTime(LocalDateTime.now());
 		return restaurantRepository.save(restaurant);
 		
 	}

@@ -12,7 +12,7 @@ import com.ujc.clouddishes.model.User;
 import com.ujc.clouddishes.service.UserService;
 
 @RestController
-@RequestMapping("/api/receptionist/")//url padrao da api
+@RequestMapping("/api/receptionist/")
 public class ReceptionistController {
 	
 	@Autowired

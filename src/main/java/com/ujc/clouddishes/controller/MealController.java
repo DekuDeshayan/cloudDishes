@@ -11,11 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ujc.clouddishes.model.Meal;
-import com.ujc.clouddishes.model.enums.Mealtype;
 import com.ujc.clouddishes.service.MealService;
 
 @RestController
-@RequestMapping("/api/meal")
+@RequestMapping("/api/meal/")
 public class MealController {
 	@Autowired
 	private MealService mealService;
@@ -25,10 +24,20 @@ public class MealController {
 		return  new ResponseEntity<>(mealService.saveMeal(meal),HttpStatus.CREATED);	
 	}
 	
+	
+	
 	@GetMapping("retrieve-meal/{name}")//api/meal/retrieve-meal/{name}
 	public ResponseEntity<?> retrieveMealByName(@PathVariable String name){
 		
 		return  ResponseEntity.ok(mealService.retrieveMealListByName(name));
 	}
 
+	
+	@GetMapping("retrieve-meal-by-id/{mealId}")//api/meal/retrieve-meal/{name}
+	public ResponseEntity<?> retrieveMealByName(@PathVariable Long mealId){
+		
+		return  ResponseEntity.ok(mealService.findByID(mealId));
+	}
+	
+	
 }

@@ -6,7 +6,7 @@ public interface MealListByName {
 	
 	String getName();
 	String getDescription();
-	Mealtype getMealtype();
+	Mealtype getMealType();
 	String getImageTitle();
 	Integer getPreparationTime();
 	Double getPrice();

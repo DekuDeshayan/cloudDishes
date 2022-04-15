@@ -1,17 +1,15 @@
 package com.ujc.clouddishes.model;
 
 import java.time.LocalDateTime;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.ujc.clouddishes.model.enums.District;
 import com.ujc.clouddishes.model.enums.Neighborhood;
 import com.ujc.clouddishes.model.enums.Province;
@@ -21,7 +19,28 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "restaurant")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Restaurant {
+	
+	public Restaurant() {
+		super();
+	}
+
+	
+	public Restaurant(long id, String name, Province province, District district, Neighborhood neighborhood,
+			String imageTitle, Integer openTime, Integer closeTime, LocalDateTime createTime) {
+		super();
+		this.id = id;
+		this.name = name;
+		setProvince(province);
+		setDistrict(district);
+		setNeighborhood(neighborhood);
+		this.imageTitle = imageTitle;
+		this.openTime = openTime;
+		this.closeTime = closeTime;
+		this.createTime = createTime;
+	}
+		
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,13 +65,14 @@ public class Restaurant {
 	private Integer closeTime;
 
 	@Column(nullable = false)
-	private LocalDateTime creatTime;
+	private LocalDateTime createTime;
 
-	@OneToMany(mappedBy = "restaurant", fetch = FetchType.LAZY)
-	private Set<Order> order;
-
-	@OneToMany(mappedBy = "restaurant", fetch = FetchType.LAZY)
-	private Set<Reservation> reservation;
+	
+	/*
+		@OneToMany(mappedBy = "restaurant", fetch = FetchType.LAZY)
+		private Set<Meal> meal;
+	*/
+	
 
 	public Province getProvince() {
 		return Province.valueOf(this.province);
@@ -89,23 +109,8 @@ public class Restaurant {
 		}
 
 	}
+	
 
-	public Restaurant(long id, String name, Province province, District district, Neighborhood neighborhood,
-			String imageTitle, Integer openTime, Integer closeTime, LocalDateTime creatTime) {
-		super();
-		this.id = id;
-		this.name = name;
-		setProvince(province);
-		setDistrict(district);
-		setNeighborhood(neighborhood);
-		this.imageTitle = imageTitle;
-		this.openTime = openTime;
-		this.closeTime = closeTime;
-		this.creatTime = creatTime;
-	}
-
-	public Restaurant() {
-		super();
-	}
+	
 
 }
