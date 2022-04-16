@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.ujc.clouddishes.model.Meal;
 import com.ujc.clouddishes.repository.MealRepository;
+import com.ujc.clouddishes.repository.RestaurantRepository;
 import com.ujc.clouddishes.repository.projections.MealListByName;
 
 @Service
@@ -16,6 +17,7 @@ public class MealServiceImplementation implements MealService {
 	
 	@Autowired
 	private MealRepository mealRepository;
+	
 
 	@Override
 	public Meal saveMeal(Meal meal) {

@@ -12,7 +12,7 @@ import com.ujc.clouddishes.repository.projections.MealListByName;
 public interface MealRepository extends JpaRepository<Meal, Long> {
 	
 	//must be search,have to be changed to like clause
-	@Query("SELECT m FROM Meal m WHERE m.name = :name")
+	@Query("SELECT m FROM Meal m WHERE m.name like %:name%")
 	List<MealListByName> retrieveMealListByName(@Param("name") String name);
 
 }

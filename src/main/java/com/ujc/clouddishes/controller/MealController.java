@@ -26,14 +26,14 @@ public class MealController {
 	
 	
 	
-	@GetMapping("retrieve-meal/{name}")//api/meal/retrieve-meal/{name}
+	@GetMapping("retrieve-meal-by-name/{name}")//api/meal/retrieve-meal-by-name/{name}
 	public ResponseEntity<?> retrieveMealByName(@PathVariable String name){
 		
 		return  ResponseEntity.ok(mealService.retrieveMealListByName(name));
 	}
 
 	
-	@GetMapping("retrieve-meal-by-id/{mealId}")//api/meal/retrieve-meal/{name}
+	@GetMapping("retrieve-meal-by-id/{mealId}")//api/meal/retrieve-meal-by-id/{id}
 	public ResponseEntity<?> retrieveMealByName(@PathVariable Long mealId){
 		
 		return  ResponseEntity.ok(mealService.findByID(mealId));

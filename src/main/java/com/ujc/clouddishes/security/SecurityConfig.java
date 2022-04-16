@@ -46,6 +46,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		  .antMatchers("/api/meal/**").permitAll()//first allowed endpoints for all user roles
 		  .antMatchers("/api/order/**").permitAll()//first allowed endpoints for all user roles
 		  .antMatchers("/api/order/save").hasRole(Role.CLIENT.name()) //first allowed endpoints for all user roles
+		  .antMatchers("/api/reservation/**").permitAll()//first allowed endpoints for all user roles
+		  .antMatchers("/api/reservation/save").hasRole(Role.CLIENT.name())//first allowed endpoints for all user roles
 		  .antMatchers("/api/user/change/{role}").hasRole(Role.ADMIN.name())//first allowed endpoints for all user roles
 	      .antMatchers("/api/client/sign-up").permitAll()//first allowed endpoints for all user roles
 	      .antMatchers("/api/manager/save").hasRole(Role.ADMIN.name()) //then this restricted endpoints will be accessible only if the user has a role called admin
