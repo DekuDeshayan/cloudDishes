@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.ujc.clouddishes.model.Meal;
 import com.ujc.clouddishes.repository.MealRepository;
-import com.ujc.clouddishes.repository.RestaurantRepository;
 import com.ujc.clouddishes.repository.projections.MealListByName;
 
 @Service

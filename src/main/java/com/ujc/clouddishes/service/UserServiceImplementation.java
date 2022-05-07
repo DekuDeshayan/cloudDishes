@@ -1,6 +1,7 @@
 package com.ujc.clouddishes.service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -82,7 +83,45 @@ public class UserServiceImplementation implements UserService {
 	}
 
 
+
+	@Override
+	public List<User> findAllAdmins() {
+		
+		return userRepository.findAllAdmins(Role.ADMIN);
+	}
+
+
+
+	@Override
+	public List<User> findAllReceptionists() {
+		
+		return  userRepository.findAllReceptionists(Role.RECEPTIONIST);
+	}
+
+
+
+	@Override
+	public List<User> findAllManagers() {
+		
+		return  userRepository.findAllManagers(Role.MANAGER);
+	}
+
+
+
+	@Override
+	public List<User> findAllClients() {
+		
+		return  userRepository.findAllClients(Role.CLIENT);
+	}
 	
+	
+	
+	
+	
+	
+
+
+
 	
 
 }

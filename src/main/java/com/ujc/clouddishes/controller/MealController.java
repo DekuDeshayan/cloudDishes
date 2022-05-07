@@ -14,7 +14,7 @@ import com.ujc.clouddishes.model.Meal;
 import com.ujc.clouddishes.service.MealService;
 
 @RestController
-@RequestMapping("/api/meal/")
+@RequestMapping("/api/meal")
 public class MealController {
 	@Autowired
 	private MealService mealService;

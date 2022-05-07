@@ -14,7 +14,7 @@ import com.ujc.clouddishes.model.Restaurant;
 import com.ujc.clouddishes.service.RestaurantService;
 
 @RestController
-@RequestMapping("/api/restaurant/") // url padrao da api
+@RequestMapping("/api/restaurant") // url padrao da api
 public class RestaurantController {
 
 	@Autowired
@@ -35,6 +35,12 @@ public class RestaurantController {
 		// return new
 		// ResponseEntity<>(restaurantService.retrieveRestaurantListByGeolocalization(province),
 		// HttpStatus.OK);
+	}
+	
+	@GetMapping("findall")//api/restaurant/findall
+	public ResponseEntity<?> findAllRestaurants(){
+		
+		return new ResponseEntity<>(restaurantService.findAll(), HttpStatus.OK);
 	}
 
 }

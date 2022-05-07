@@ -17,7 +17,7 @@ import com.ujc.clouddishes.security.UserPrincipal;
 import com.ujc.clouddishes.service.OrderService;
 
 @RestController
-@RequestMapping("/api/order/")
+@RequestMapping("/api/order")
 public class OrderController {
 	
 	@Autowired

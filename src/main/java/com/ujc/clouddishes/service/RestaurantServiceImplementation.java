@@ -30,6 +30,12 @@ public class RestaurantServiceImplementation implements RestaurantService {
 		
 		return restaurantRepository.retrieveRestaurantListByGeolocalization(provinceCode, districtCode, neighborhoodCode);
 	}
+
+	@Override
+	public List<Restaurant> findAll() {
+		
+		return restaurantRepository.findAll();
+	}
 	
 	
 

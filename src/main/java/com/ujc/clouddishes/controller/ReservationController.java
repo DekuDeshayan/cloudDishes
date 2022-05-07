@@ -17,7 +17,7 @@ import com.ujc.clouddishes.security.UserPrincipal;
 import com.ujc.clouddishes.service.ReservationService;
 
 @RestController
-@RequestMapping("/api/reservation/")
+@RequestMapping("/api/reservation")
 public class ReservationController {
 	
 	@Autowired

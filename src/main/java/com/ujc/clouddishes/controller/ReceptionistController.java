@@ -3,6 +3,7 @@ package com.ujc.clouddishes.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +13,7 @@ import com.ujc.clouddishes.model.User;
 import com.ujc.clouddishes.service.UserService;
 
 @RestController
-@RequestMapping("/api/receptionist/")
+@RequestMapping("/api/receptionist")
 public class ReceptionistController {
 	
 	@Autowired
@@ -35,5 +36,11 @@ public class ReceptionistController {
 		return new ResponseEntity<>(userService.saveReceptionist(user), HttpStatus.CREATED);
 	}
 	
+	@GetMapping("findall")//api/receptionist/findall
+	public ResponseEntity<?> findAllReceptionists(){
+		
+		return new ResponseEntity<>(userService.findAllReceptionists(), HttpStatus.OK);
+	}
 
+	
 }

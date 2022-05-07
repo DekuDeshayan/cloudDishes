@@ -18,7 +18,7 @@ import com.ujc.clouddishes.service.AuthenticationService;
 import com.ujc.clouddishes.service.UserService;
 
 @RestController
-@RequestMapping("/api/user/")//url padrao da api
+@RequestMapping("/api/user")//url padrao da api
 public class UserController {
 
 	

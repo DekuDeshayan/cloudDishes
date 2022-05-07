@@ -54,7 +54,6 @@ public class Order {
 	@JoinColumn(name = "request_id", referencedColumnName = "id", insertable = false, updatable = false)
 	private Request request;
 	
-
 	
 	//fk- é a criacao da foreign key como no mysql: user_id int
 	@Column(name="user_id", nullable = false)

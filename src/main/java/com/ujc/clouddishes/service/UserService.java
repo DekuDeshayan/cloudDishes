@@ -1,5 +1,6 @@
 package com.ujc.clouddishes.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.ujc.clouddishes.model.User;
@@ -16,9 +17,20 @@ public interface UserService {
 	
 	User saveAdmin(User user);
 	
+	List<User> findAllAdmins();
+	
+	List<User> findAllReceptionists();
+	
+	List<User> findAllManagers();
+	
+	List<User> findAllClients();
+	
 	Optional<User> findByUsername(String username);
 	
 	void changeUserRole(String username, Role role);
+
+	
+	
 	
 
 

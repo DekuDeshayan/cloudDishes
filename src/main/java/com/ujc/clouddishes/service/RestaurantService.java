@@ -11,4 +11,5 @@ public interface RestaurantService {
 	
 	List<RestaurantListByGeoLocalization> retrieveRestaurantListByGeolocalization(Integer provinceCode, Integer districtCode, Integer neighborhoodCode);
 
+	List<Restaurant> findAll();
 }
