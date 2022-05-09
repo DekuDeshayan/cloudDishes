@@ -39,5 +39,11 @@ public class ManagerController {
 		
 		return new ResponseEntity<>(userService.findAllManagers(), HttpStatus.OK);
 	}
+	
+	@GetMapping("find-manager")//api/manager/find-manager
+	public ResponseEntity<?> findAllManagerNonRestaurant(){
+		
+		return new ResponseEntity<>(userService.findAllManagerNonRestaurant(), HttpStatus.OK);
+	}
 
 }

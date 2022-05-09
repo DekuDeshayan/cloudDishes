@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.ujc.clouddishes.model.User;
 import com.ujc.clouddishes.model.enums.Role;
 import com.ujc.clouddishes.repository.UserRepository;
+import com.ujc.clouddishes.repository.projections.findAllManagerNonRest;
 
 @Service
 public class UserServiceImplementation implements UserService {
@@ -114,6 +115,11 @@ public class UserServiceImplementation implements UserService {
 		return  userRepository.findAllClients(Role.CLIENT);
 	}
 	
+	@Override
+	public List<findAllManagerNonRest> findAllManagerNonRestaurant() {
+		
+		return userRepository.findAllManagerNonRestaurant();
+	}
 	
 	
 	
