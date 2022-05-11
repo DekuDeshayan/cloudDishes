@@ -1,6 +1,6 @@
 package com.ujc.clouddishes.repository.projections;
 
-public interface findAllManagerNonRest {
+public interface ManagersNotLinkedToRestaurants {
 	
 	Long getId();
 	String getFirst_name();

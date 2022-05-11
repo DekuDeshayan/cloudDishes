@@ -40,6 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable();
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		http.authorizeRequests()
+		  .antMatchers("/v2/api-docs", "/swagger-resources/**","/swagger-ui.html", "/webjars/**" ,/*Probably not needed*/ "/swagger.json").permitAll()
 		  .antMatchers("/api/user/**").permitAll()//first allowed endpoints for all user roles
 		  .antMatchers("/api/admin/**").permitAll()//first allowed endpoints for all user roles
 		  .antMatchers("/api/restaurant/**").permitAll()//first allowed endpoints for all user roles
@@ -49,6 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		  .antMatchers("/api/order/**").permitAll()//first allowed endpoints for all user roles
 		  .antMatchers("/api/client/**").permitAll()//first allowed endpoints for all user roles
 		  .antMatchers("/api/reservation/**").permitAll()//first allowed endpoints for all user roles
+		  //.antMatchers("/api/client/report").hasRole(Role.ADMIN.name())//first allowed endpoints for all user roles
 		  .antMatchers("/api/user/change/{role}").hasRole(Role.ADMIN.name())//first allowed endpoints for all user roles
 	      .antMatchers("/api/client/sign-up").permitAll()//first allowed endpoints for all user roles
 	      .antMatchers("/api/order/save").hasRole(Role.CLIENT.name()) //first allowed endpoints for all user roles

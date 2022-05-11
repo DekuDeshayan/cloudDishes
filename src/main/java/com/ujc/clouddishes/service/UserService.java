@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import com.ujc.clouddishes.model.User;
 import com.ujc.clouddishes.model.enums.Role;
-import com.ujc.clouddishes.repository.projections.findAllManagerNonRest;
+import com.ujc.clouddishes.repository.projections.ManagersNotLinkedToRestaurants;
 
 public interface UserService {
 
@@ -30,7 +30,7 @@ public interface UserService {
 	
 	void changeUserRole(String username, Role role);
 
-	List<findAllManagerNonRest> findAllManagerNonRestaurant();
+	List<ManagersNotLinkedToRestaurants> findManagersNotLinkedToRestaurants();
 
 	
 	

@@ -31,13 +31,15 @@ public class Restaurant {
 
 	
 	public Restaurant(long id, String name, Province province, District district, Neighborhood neighborhood,
-			String imageTitle, Integer openTime, Integer closeTime, LocalDateTime createTime, Long user_id) {
+			String imageTitle, String email, String phone, Integer openTime, Integer closeTime, LocalDateTime createTime, Long user_id) {
 		super();
 		this.id = id;
 		this.name = name;
 		setProvince(province);
 		setDistrict(district);
 		setNeighborhood(neighborhood);
+		this.email = email;
+		this.phone = phone;
 		this.imageTitle = imageTitle;
 		this.openTime = openTime;
 		this.closeTime = closeTime;
@@ -58,8 +60,12 @@ public class Restaurant {
 	private Integer district;
 
 	private Integer neighborhood;
+	
+	private String email;
+	
+	private String phone;
 
-	@Column(nullable = false, length = 100)
+	@Column(length = 100)
 	private String imageTitle;
 
 	@Column(nullable = false)

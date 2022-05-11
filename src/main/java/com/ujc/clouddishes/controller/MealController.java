@@ -34,7 +34,7 @@ public class MealController {
 
 	
 	@GetMapping("retrieve-meal-by-id/{mealId}")//api/meal/retrieve-meal-by-id/{id}
-	public ResponseEntity<?> retrieveMealByName(@PathVariable Long mealId){
+	public ResponseEntity<?> retrieveMealById(@PathVariable Long mealId){
 		
 		return  ResponseEntity.ok(mealService.findByID(mealId));
 	}
