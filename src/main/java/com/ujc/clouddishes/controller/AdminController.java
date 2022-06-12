@@ -19,9 +19,7 @@ public class AdminController {
 	@Autowired
 	private UserService userService;
 	
-	//todo code here
 
-	
 	@PostMapping("save")//api/admin/save
 	public ResponseEntity<?> saveAdmin (@RequestBody User user){
 		

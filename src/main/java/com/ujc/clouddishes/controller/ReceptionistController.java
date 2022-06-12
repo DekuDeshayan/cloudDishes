@@ -33,9 +33,6 @@ public class ReceptionistController {
 	private UserService userService;
 	
 
-	/*
-	 * Método de cadastro de Receptionist
-	 */
 	@PostMapping("save")//api/receptionist/save
 	public ResponseEntity<?> saveReceptionist (@RequestBody User user){
 		
@@ -65,7 +62,7 @@ public class ReceptionistController {
 		JasperReport compileReport = JasperCompileManager.compileReport(new FileInputStream("src/main/resources/cloudDishes-user-reports.jrxml"));
 		
 		HashMap<String, Object> map = new HashMap<>();//we use Object in map because the content must be of any type
-		map.put("reportTitle", "Receptionist List Report");//to dynmaically map a textfield...
+		map.put("reportTitle", "Receptionist List Report");//to dynamically map a textfield...
 		JasperPrint report =  JasperFillManager.fillReport(compileReport, map, beanCollectionDataSource);
 		
 	    byte[] data = JasperExportManager.exportReportToPdf(report);

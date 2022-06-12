@@ -40,25 +40,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable();
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		http.authorizeRequests()
+		
+		   /*first :allowed endpoints for all user roles*/
+		
 		  .antMatchers("/v2/api-docs", "/swagger-resources/**","/swagger-ui.html", "/webjars/**" ,/*Probably not needed*/ "/swagger.json").permitAll()
-		  .antMatchers("/api/user/**").permitAll()//first allowed endpoints for all user roles
-		  .antMatchers("/api/admin/**").permitAll()//first allowed endpoints for all user roles
-		  .antMatchers("/api/restaurant/**").permitAll()//first allowed endpoints for all user roles
-		  .antMatchers("/api/receptionist/**").permitAll()//first allowed endpoints for all user roles
-		  .antMatchers("/api/manager/**").permitAll()//first allowed endpoints for all user roles
-		  .antMatchers("/api/meal/**").permitAll()//first allowed endpoints for all user roles
-		  .antMatchers("/api/order/**").permitAll()//first allowed endpoints for all user roles
-		  .antMatchers("/api/client/**").permitAll()//first allowed endpoints for all user roles
-		  .antMatchers("/api/reservation/**").permitAll()//first allowed endpoints for all user roles
-		  //.antMatchers("/api/client/report").hasRole(Role.ADMIN.name())//first allowed endpoints for all user roles
-		  .antMatchers("/api/user/change/{role}").hasRole(Role.ADMIN.name())//first allowed endpoints for all user roles
-	      .antMatchers("/api/client/sign-up").permitAll()//first allowed endpoints for all user roles
-	      .antMatchers("/api/order/save").hasRole(Role.CLIENT.name()) //first allowed endpoints for all user roles
-	      .antMatchers("/api/reservation/save").hasRole(Role.CLIENT.name())//first allowed endpoints for all user roles
-	      .antMatchers("/api/manager/save").hasRole(Role.ADMIN.name()) //then this restricted endpoints will be accessible only if the user has a role called admin
-	      .antMatchers("/api/restaurant/save").hasRole(Role.ADMIN.name()) //then this restricted endpoints will be accessible only if the user has a role called admin
-	      .antMatchers("/api/receptionist/save").hasRole(Role.MANAGER.name()) //then this restricted endpoints will be accessible only if the user has a role called manager
-	      .antMatchers("/api/meal/save").hasRole(Role.MANAGER.name()) //then this restricted endpoints will be accessible only if the user has a role called manager
+		  .antMatchers("/api/user/**").permitAll()
+		  .antMatchers("/api/admin/**").permitAll()
+		  .antMatchers("/api/restaurant/**").permitAll()
+		  .antMatchers("/api/receptionist/**").permitAll()
+		  .antMatchers("/api/manager/**").permitAll()
+		  .antMatchers("/api/meal/**").permitAll()
+		  .antMatchers("/api/order/**").permitAll()
+		  .antMatchers("/api/client/**").permitAll()
+		  .antMatchers("/api/reservation/**").permitAll()
+		  
+		   /*Then :restricted endpoints will be accessible only if the user has a certain required role*/
+		  
+		  .antMatchers("/api/user/change/{role}").hasRole(Role.ADMIN.name())
+	      .antMatchers("/api/client/sign-up").permitAll()
+	      .antMatchers("/api/order/save").hasRole(Role.CLIENT.name())
+	      .antMatchers("/api/reservation/save").hasRole(Role.CLIENT.name())
+	      .antMatchers("/api/manager/save").hasRole(Role.ADMIN.name())
+	      .antMatchers("/api/restaurant/save").hasRole(Role.ADMIN.name())
+	      .antMatchers("/api/receptionist/save").hasRole(Role.MANAGER.name()) 
+	      .antMatchers("/api/meal/save").hasRole(Role.MANAGER.name()) 
 	      .anyRequest().authenticated();
 		
 		 http.addFilterBefore(jwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);

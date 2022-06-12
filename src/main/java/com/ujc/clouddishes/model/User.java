@@ -26,7 +26,7 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	
 	
 	@Column(nullable = false, length = 100)
@@ -55,14 +55,7 @@ public class User {
 	@Column(nullable = false)
 	private Role role;
 	
-	/*
-		@OneToMany(mappedBy = "user", fetch =  FetchType.LAZY)
-		private Set<Order> order;
-		
-		@OneToMany(mappedBy = "user", fetch =  FetchType.LAZY)
-		private Set<Reservation> reservation;
-	*/
-	
+
 	@Transient
 	private String token;
 	

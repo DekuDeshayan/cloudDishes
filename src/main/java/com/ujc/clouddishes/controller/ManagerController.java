@@ -32,9 +32,7 @@ public class ManagerController {
 	@Autowired
 	private UserService userService;
 	
-	/*
-	 * Método de cadastro de Manager
-	 */
+
 	@PostMapping("save")//api/manager/save
 	public ResponseEntity<?> saveManager (@RequestBody User user){
 		

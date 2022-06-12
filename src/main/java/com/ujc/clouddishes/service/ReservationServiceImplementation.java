@@ -37,7 +37,7 @@ public class ReservationServiceImplementation implements ReservationService {
 		Optional<Meal> meal = mealRepository.findById(mealId);
 		
 		reservation.setReservationTime(LocalDateTime.now());
-		reservation.setUserId(user_id);
+		reservation.setUser_id(user_id);
 		
 		request.setDescription(Reservation_prefix + reservation.getDescription());
 		request.setRequestStatus(RequestStatus.PENDING);

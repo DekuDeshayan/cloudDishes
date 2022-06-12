@@ -28,9 +28,10 @@ import lombok.Data;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Order {
 	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	
 
 	@Column(nullable = false)
@@ -39,30 +40,40 @@ public class Order {
 	@Column(nullable = false)
 	private String description;
 	
-
+	@Column(nullable = false)
+	private double subtotal;
+	
 	
 	@ManyToMany
 	@JoinTable(name = "order_meal", joinColumns = @JoinColumn(name = "meal_id"), inverseJoinColumns = @JoinColumn(name = "order_id"))
 	private Set<Meal> meal = new HashSet<>();
 	
-
-	//fk- é a criacao da foreign key como no mysql: user_id int
-	@Column(nullable = false)
+	
+	@Column(name = "request_id", nullable = false)
 	private Long request_id;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "request_id", referencedColumnName = "id", insertable = false, updatable = false)
 	private Request request;
 	
-	
-	//fk- é a criacao da foreign key como no mysql: user_id int
+
 	@Column(name="user_id", nullable = false)
 	private Long user_id;
-	
 	
 	@ManyToOne(fetch =  FetchType.LAZY)
 	@JoinColumn(name="user_id", referencedColumnName = "id", insertable = false, updatable = false)
 	private User user;
+	
+	
+	@Column(name="address_id", nullable = false)
+	private Long address_id;
+	
+	@ManyToOne(fetch =  FetchType.LAZY)
+	@JoinColumn(name="address_id", referencedColumnName = "id", insertable = false, updatable = false)
+	private OrderDeliveryAddress orderdeliveryaddress;
+	
+	
+	
 
 	
 }

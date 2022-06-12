@@ -28,7 +28,7 @@ public class Meal {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	
 	@Column(nullable = false, length = 100)
 	private String name;
@@ -37,7 +37,7 @@ public class Meal {
 	@Column(nullable = false)
 	private Mealtype mealType;
 	
-	@Column(nullable = false, length = 100)
+	@Column(nullable = false, length = 10)
 	private String description;
 	
 	@Column (nullable = false)
@@ -46,22 +46,18 @@ public class Meal {
 	@Column(nullable = false)
 	private Integer preparationTime;
 	
-	@Column(nullable = false, length =100)
-	private String imageTitle;
-	
 	@Column(nullable = false)
 	private LocalDateTime createTime;
 	
-	/*
-		@ManyToMany(mappedBy = "meal")
-		private Set<Order> order = new HashSet<>();
-		
-		@ManyToMany(mappedBy = "meal")
-		private Set<Reservation> reservation = new HashSet<>();
-	*/
+	
+	@Column(length = 100)
+	private String imageName;
+	
+	@Column
+	private String imageUrl;
 	
 	
-	@Column(nullable = false)
+	@Column(name="restaurant_id", nullable = false)
 	private Long restaurant_id;
 	
 	@ManyToOne(fetch =  FetchType.LAZY)

@@ -33,9 +33,6 @@ public class ClientController {
 	private UserService userService;
 	
 	
-	/*
-	 * Método de cadastro de clientes
-	 */
 	@PostMapping("sign-up")//api/client/sign-up
 	public ResponseEntity<?> saveClient (@RequestBody User user){
 		

@@ -1,17 +1,21 @@
 package com.ujc.clouddishes.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ujc.clouddishes.model.Meal;
 import com.ujc.clouddishes.model.Order;
+import com.ujc.clouddishes.model.OrderDeliveryAddress;
 import com.ujc.clouddishes.model.Request;
 import com.ujc.clouddishes.security.UserPrincipal;
 import com.ujc.clouddishes.service.OrderService;
@@ -24,13 +28,14 @@ public class OrderController {
 	private OrderService orderService;
 	
 	
-	
-	@PostMapping("save/{mealId}")//api/order/save/{mealId}
-	public ResponseEntity<?> saveOrder(@RequestBody Order order, Request request, @PathVariable Long mealId, @AuthenticationPrincipal UserPrincipal userPrincipal){
+	@PostMapping("save")//api/order/save/{mealId}
+	public ResponseEntity<?> saveOrder(@RequestBody Order order, Request request, OrderDeliveryAddress address,
+			@RequestParam("meals") List<Meal> meals, @AuthenticationPrincipal UserPrincipal userPrincipal){
 		
-		return new ResponseEntity<>(orderService.saveOrder(order, request, mealId, userPrincipal.getId()), HttpStatus.CREATED);
-		//(Order order, Request request, Long mealId, Long user_id) 
+		return new ResponseEntity<>(orderService.saveOrder(order, address, meals, request, userPrincipal.getId()), HttpStatus.CREATED);
+
 	}
+	
 	
 	@GetMapping("find-all-orders")//api/order/find-all-orders
 	public ResponseEntity<?> findAllOrders(){
@@ -39,3 +44,4 @@ public class OrderController {
 	}
 
 }
+

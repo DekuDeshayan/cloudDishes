@@ -24,33 +24,10 @@ import lombok.Data;
 @Table(name = "restaurant")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Restaurant {
-	
-	public Restaurant() {
-		super();
-	}
-
-	
-	public Restaurant(long id, String name, Province province, District district, Neighborhood neighborhood,
-			String imageTitle, String email, String phone, Integer openTime, Integer closeTime, LocalDateTime createTime, Long user_id) {
-		super();
-		this.id = id;
-		this.name = name;
-		setProvince(province);
-		setDistrict(district);
-		setNeighborhood(neighborhood);
-		this.email = email;
-		this.phone = phone;
-		this.imageTitle = imageTitle;
-		this.openTime = openTime;
-		this.closeTime = closeTime;
-		this.createTime = createTime;
-		this.user_id = user_id;
-	}
 		
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 
 	@Column(nullable = false, length = 100)
 	private String name;
@@ -65,9 +42,6 @@ public class Restaurant {
 	
 	private String phone;
 
-	@Column(length = 100)
-	private String imageTitle;
-
 	@Column(nullable = false)
 	private Integer openTime;
 
@@ -76,58 +50,62 @@ public class Restaurant {
 
 	@Column(nullable = false)
 	private LocalDateTime createTime;
+
 	
-	//fk- é a criacao da foreign key como no mysql: user_id int
-	@Column(nullable = false)
+	@Column(name = "user_id", nullable = false)
 	private Long user_id;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
 	private User user;
+	
+	
+	@Column(length = 100)
+	private String imageName;
+	
+	@Column
+	private String imageUrl;
 
 	
-	/*
-		@OneToMany(mappedBy = "restaurant", fetch = FetchType.LAZY)
-		private Set<Meal> meal;
-	*/
+	public Restaurant() {
+		super();
+	}
+
 	
+	public Restaurant(long id, String name, Integer province, Integer district, Integer neighborhood,
+			String email, String phone, Integer openTime, Integer closeTime, LocalDateTime createTime, Long user_id) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.province = province;
+		this.district = district;
+		this.neighborhood = neighborhood;
+		this.email = email;
+		this.phone = phone;
+		this.openTime = openTime;
+		this.closeTime = closeTime;
+		this.createTime = createTime;
+		this.user_id = user_id;
+	}
 
 	public Province getProvince() {
 		return Province.valueOf(this.province);
 	}
 
-	public void setProvince(Province province) {
 
-		if (province != null) {
-			this.province = province.getCode();
-		}
-
-	}
 
 	public District getDistrict() {
 		return District.valueOf(this.district);
 	}
 
-	public void setDistrict(District district) {
 
-		if (district != null) {
-			this.district = district.getCode();
-		}
 
-	}
 	
 	public Neighborhood getNeighborhood() {
 		return Neighborhood.valueOf(this.neighborhood);
 	}
 
-	public void setNeighborhood(Neighborhood neighborhood) {
 
-		if (neighborhood != null) {
-			this.neighborhood = neighborhood.getCode();
-		}
-
-	}
-	
 
 	
 

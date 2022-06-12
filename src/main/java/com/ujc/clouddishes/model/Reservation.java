@@ -30,7 +30,7 @@ public class Reservation {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	
 
 	@Column(nullable = false)
@@ -47,8 +47,8 @@ public class Reservation {
 	private Set<Meal> meal = new HashSet<>();
 
 
-	//fk- é a criacao da foreign key como no mysql: user_id int
-	@Column(nullable = false)
+
+	@Column(name = "request_id", nullable = false)
 	private Long request_id;
 	
 	@OneToOne(cascade = CascadeType.ALL)
@@ -56,11 +56,9 @@ public class Reservation {
 	private Request request;
 	
 	
-	
-	//fk- é a criacao da foreign key como no mysql: user_id int
+
 	@Column(name="user_id", nullable = false)
-	private Long userId;
-	
+	private Long user_id;
 	
 	@ManyToOne(fetch =  FetchType.LAZY)
 	@JoinColumn(name="user_id", referencedColumnName = "id", insertable = false, updatable = false)

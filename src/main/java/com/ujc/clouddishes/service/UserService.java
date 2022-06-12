@@ -9,7 +9,6 @@ import com.ujc.clouddishes.repository.projections.ManagersNotLinkedToRestaurants
 
 public interface UserService {
 
-	
 	User saveClient(User user);
 	
 	User saveManager(User user);
