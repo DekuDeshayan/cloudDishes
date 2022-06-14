@@ -31,9 +31,9 @@
 				<textFieldExpression><![CDATA[$P{reportTitle}]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="440" y="15" width="105" height="77" uuid="d7a2c503-ee41-4fca-a767-7370c447cc09"/>
+				<reportElement x="428" y="38" width="125" height="30" uuid="d7a2c503-ee41-4fca-a767-7370c447cc09"/>
 				<box padding="0"/>
-				<imageExpression><![CDATA["C:/Users/user/Downloads/34011906.png"]]></imageExpression>
+				<imageExpression><![CDATA["https://i.imgur.com/ZXAJ02J.png"]]></imageExpression>
 			</image>
 			<textField pattern="MMMMM dd, yyyy">
 				<reportElement x="0" y="-20" width="100" height="29" uuid="bf07c397-37f1-4205-9bcd-c5a64c8b06ca"/>

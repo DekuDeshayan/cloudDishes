@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.ujc.clouddishes.dto.MealDTO;
 import com.ujc.clouddishes.model.enums.Mealtype;
 
 import lombok.Data;
@@ -65,5 +66,27 @@ public class Meal {
 	private Restaurant restaurant;
 	
 	
+	public Meal() {
+		super();
+	}
+	
+	public Meal(MealDTO meal) {
+		super();
+		
+		this.id = meal.getId();
+		this.price = meal.getPrice();
+		this.description = meal.getDescription();
+		this.name = meal.getName();
+		this.preparationTime = meal.getPreparationTime();
+		this.price = meal.getPrice();
+		this.mealType = meal.getMealType();
+		this.imageName = meal.getImageName();
+		this.imageUrl = meal.getImageUrl();
+		this.createTime = meal.getCreateTime();
+		this.restaurant_id = meal.getRestaurant_id();
+	}
+	
+
+
 
 }
