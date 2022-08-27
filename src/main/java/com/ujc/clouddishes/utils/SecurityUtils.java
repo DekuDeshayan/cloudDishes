@@ -1,7 +1,5 @@
 package com.ujc.clouddishes.utils;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.util.StringUtils;
 

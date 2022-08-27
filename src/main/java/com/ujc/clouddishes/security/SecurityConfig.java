@@ -1,8 +1,11 @@
 package com.ujc.clouddishes.security;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -26,6 +29,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private CustomUserDetailsService customUserDetailsService;
 	
+	@Autowired
+	private Environment env;
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(customUserDetailsService)
@@ -36,6 +42,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+
+		/*
+		 * basic verification to disable frameOptions when the profile is test
+		 * 
+		 */
+		if (Arrays.asList(env.getActiveProfiles()).contains("test")) {
+			http.headers().frameOptions().disable();
+		}
+		
 		http.cors();
 		http.csrf().disable();
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
@@ -53,6 +68,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		  .antMatchers("/api/order/**").permitAll()
 		  .antMatchers("/api/client/**").permitAll()
 		  .antMatchers("/api/reservation/**").permitAll()
+		  .antMatchers("/console/**").permitAll()
+		  .antMatchers("/h2-console/**").permitAll()
 		  
 		   /*Then :restricted endpoints will be accessible only if the user has a certain required role*/
 		  
