@@ -15,7 +15,7 @@
 	<name>cloud-dishes</name>
 	<description>online food reservation and order system</description>
 
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<properties>
 		<java.version>11</java.version>
